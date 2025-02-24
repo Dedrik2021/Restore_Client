@@ -2,6 +2,7 @@ import { FC } from "react";
 
 import { Product } from "../../models/product";
 import { Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
+import { Link } from "react-router";
 
 type Props = {
     product: Product
@@ -22,7 +23,7 @@ const ProductCard: FC<Props> = ({product}) => {
             </CardContent>
             <CardActions sx={{justifyContent: 'space-between'}}>
                 <Button>Add to cart</Button>
-                <Button>View</Button>
+                <Button component={Link} to={`/catalog/${product.id}`} >View</Button>
             </CardActions>
         </Card>
     );

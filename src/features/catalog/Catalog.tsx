@@ -1,18 +1,15 @@
-import { FC } from "react";
-
-import { Product } from "../../models/product";
 import ProductList from "./ProductList";
+import { useFetchProductsQuery } from "./catalogApi";
 
 
-type CatalogProps = {
-    products: Product[];
-}
+const Catalog = () => {
+	const {data, isLoading} = useFetchProductsQuery();
 
-const Catalog: FC<CatalogProps> = ({products}) => {
+	if (isLoading || !data) return <div>Loading...</div>;
+
     return ( 
         <>
-            <ProductList products={products} />
-			
+            <ProductList products={data} />
         </>
     );
 }

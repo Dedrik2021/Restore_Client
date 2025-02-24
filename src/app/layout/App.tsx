@@ -1,14 +1,11 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Box, Container, createTheme, CssBaseline, ThemeProvider } from '@mui/material';
-import { Product } from '../../models/product';
-import Catalog from '../../features/catalog/Catalog';
+import { Outlet } from 'react-router';
+
 import Navbar from './Navbar';
+import { useAppSelector } from '../store/store';
 
 function App() {
-	const [products, setProducts] = useState<Product[]>([]);
-	const [darkMode, setDarkMode] = useState< boolean >(false);
-	
+	const {darkMode} = useAppSelector(state => state.ui);
 	const palletType = darkMode ? 'dark' : 'light';
 
 	const theme = createTheme({
@@ -20,27 +17,10 @@ function App() {
 		},
 	});
 
-	const fetchData = async () => {
-		try {
-			const response = await axios.get('http://localhost:5001/api/products');
-			setProducts(response.data);
-		} catch (error) {
-			console.error('There was a problem with the fetch operation:', error);
-		}
-	};
-
-	useEffect(() => {
-		fetchData();
-	}, []);
-
-	const toggleDarkMode = () => {
-		setDarkMode(!darkMode);
-	};
-
 	return (
 		<ThemeProvider theme={theme}>
 			<CssBaseline />
-			<Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+			<Navbar />
 			<Box
 				sx={{
 					minHeight: '100vh',
@@ -51,7 +31,7 @@ function App() {
 				}}
 			>
 				<Container maxWidth="xl" sx={{ mt: 8 }}>
-					<Catalog products={products} />
+					<Outlet />
 				</Container>
 			</Box>
 		</ThemeProvider>
