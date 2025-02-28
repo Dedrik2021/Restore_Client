@@ -72,7 +72,7 @@ const Navbar = () => {
 					</List>
 				</Box>
 				<Box sx={flexDisplay}>
-					<IconButton size="large">
+					<IconButton component={NavLink} to="/basket" size="large">
 						<Badge badgeContent={4} color="secondary">
 							<ShoppingCart sx={{ color: 'inherit' }} />
 						</Badge>
