@@ -3,7 +3,11 @@ import { startLoading, stopLoading } from '../layout/uiSlice';
 import { toast } from 'react-toastify';
 import { router } from '../routes/Routes';
 
-const customBaseQuery = fetchBaseQuery({ baseUrl: 'http://localhost:5001/api' });
+const customBaseQuery = fetchBaseQuery({
+	baseUrl: 'http://localhost:5001/api',
+	credentials: 'include',
+	
+});
 
 type ErrorResponse = string | { title: string } | { errors: string[] };
 
