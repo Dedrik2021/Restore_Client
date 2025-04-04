@@ -1,19 +1,21 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-import { Product } from "../../models/product";
-import ProductCard from "./ProductCard";
-import { Box } from "@mui/material";
+import { Product } from '../../models/product';
+import ProductCard from './ProductCard';
+import { Grid2 } from '@mui/material';
 
 type Props = {
-    products: Product[]
-}
-const ProductList: FC<Props> = ({products}) => {
+	products: Product[];
+};
+const ProductList: FC<Props> = ({ products }) => {
 	return (
-		<Box sx={{display: 'flex', flexWrap: 'wrap', gap: 3, justifyContent: 'center'}}>
+		<Grid2 container spacing={3}>
 			{products.map((product) => (
-                    <ProductCard key={product.id} product={product} />
+				<Grid2 key={product.id} size={3} display={'flex'}>
+					<ProductCard key={product.id} product={product} />
+				</Grid2>
 			))}
-		</Box>
+		</Grid2>
 	);
 };
 
